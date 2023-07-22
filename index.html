@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MoneyAI</title>
+  <style>
+    /* Estilos gerais */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000; /* Fundo preto */
+      color: #fff;
+      text-align: center;
+    }
+
+    /* Estilos para o container das calculadoras */
+    .container {
+      max-width: 1200px; /* Largura máxima do container */
+      margin: 0 auto; /* Centraliza o container na página */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    /* Estilos para cada calculadora */
+    .calculator {
+      flex-basis: calc(25% - 20px);
+      margin: 10px;
+      padding: 20px;
+      box-sizing: border-box; /* Inclui a margem e o preenchimento na largura total */
+    }
+
+    /* Estilos para a seção de espelhamento */
+    .iframe-container {
+      flex-basis: 50%;
+      margin-top: 10px;
+      height: 800px; /* Definindo a altura para 800px */
+    }
+
+    iframe {
+      width: 40%;
+      height: 80%; /* Definindo a altura do iframe para 100% da div pai */
+      border: none;
+    }
+
+    .resultado {
+      margin-top: 20px;
+    }
+
+    /* Estilos específicos para a faixa azul */
+    .blue-background {
+      background-color: #0000FF; /* Azul */
+      padding: 10px;
+    }
+
+    /* Estilos específicos para a faixa vermelha */
+    .red-background {
+      background-color: #FF0000; /* Vermelho */
+      padding: 10px;
+    }
+
+    /* Estilos específicos para a faixa azul no resultado */
+    .blue-result {
+      background-color: #0000FF;
+      padding: 10px;
+    }
+
+    /* Estilos específicos para a faixa vermelha no resultado */
+    .red-result {
+      background-color: #FF0000;
+      padding: 10px;
+    }
+
+    /* Estilos específicos para a faixa verde no resultado */
+    .green-result {
+      background-color: #00FF00; /* Verde */
+      padding: 10px;
+    }
+  /* Estilos para a logo */
+    .logo {
+      max-width: 200px; /* Defina o tamanho máximo desejado para o logotipo */
+      margin: 10px auto; /* Centraliza a logo horizontalmente com margem de 10px no topo */
+  </style>
+</head>
+<body>
+  <a id="topo"></a> <!-- Âncora para abrir a página no topo -->
+<img class="logo" src="https://document-export.canva.com/62AJ8/DAFpXw62AJ8/2/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20230721%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230721T234533Z&X-Amz-Expires=63409&X-Amz-Signature=c07d282ad02dd6008bd5e68962322b9b6f5f06219b62e14311976d8cad008c03&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2022%20Jul%202023%2017%3A22%3A22%20GMT" alt="MoneyAI Logo"> <!-- Substitua "LOGO_URL" pelo URL da imagem do logotipo -->
+  <div class="container">
+    <!-- Calculadora 1 -->
+    <div class="calculator">
+      <h1>IA DADOS</h1>
+      <label>Defina a quantidade de cores azuis:</label>
+      <input type="number" id="quantidadeAzulInput" value="0" min="0">
+      <br>
+      <label>Defina a quantidade de cores vermelhas:</label>
+      <input type="number" id="quantidadeVermelhoInput" value="0" min="0">
+      <br>
+      <button onclick="calcularResultado()">Calcular</button>
+      <p class="resultado" id="resultado">-</p>
+    </div>
+
+    <!-- Calculadora 2 -->
+    <div class="calculator">
+      <h1>IA DOUBLE</h1>
+      <label>Defina a quantidade de cores vermelhas:</label>
+      <input type="number" id="quantidadeVermelhoInput2" value="0" min="0">
+      <br>
+      <label>Defina a quantidade de cores pretas:</label>
+      <input type="number" id="quantidadePretoInput" value="0" min="0">
+      <br>
+      <button onclick="calcularResultado2()">Calcular</button>
+      <p class="resultado" id="resultado2">-</p>
+    </div>
+
+    <!-- Calculadora 3 -->
+    <div class="calculator">
+      <h1>GERENCIAMENTO</h1>
+      <label>Valor inicial:</label>
+      <input type="text" id="valorInicialInput" value="" placeholder="Exemplo: VALOR">
+      <br>
+      <label>Porcentagem diária:</label>
+      <input type="number" id="porcentagemDiariaInput" value="0" min="0" max="100">
+      <br>
+      <button onclick="calcularPorcentagemDiaria()">Calcular</button>
+      <p class="resultado" id="resultadoPorcentagemDiaria">-</p>
+    </div>
+  </div>
+<div class="attention-message">Atenção: Use até 2 gales!</div>
+
+  <!-- Espelhamento de site -->
+  <div class="iframe-container">
+    <iframe src="https://9f.com/r/PXrGBosV" frameborder="0"></iframe>
+  </div>
+
+  <!-- Link para retornar ao topo da página -->
+ <!-- Botões sociais -->
+  <div class="social-buttons">
+    <a class="social-button whatsapp-button" href="https://api.whatsapp.com/send?phone=44997383279" target="_blank">WhatsApp</a>
+    <a class="social-button Instagram-button" href="https://www.instagram.com/https://www.instagram.com/ademilson_212//ademilson_212/" target="_blank">Instagram</a>
+    <a class="social-button youtube-button" href="https://www.youtube.com/c/https://www.youtube.com/channel/UC39TmNBpx7PEpBowlh3MODg" target="_blank">YouTube</a>
+  </div>
+
+  <p><a href="#topo">Voltar ao topo</a></p>
+
+
+  <script>
+    // Função para calcular o resultado da primeira calculadora
+    function calcularResultado() {
+      let quantidadeAzul = parseInt(document.getElementById('quantidadeAzulInput').value);
+      let quantidadeVermelho = parseInt(document.getElementById('quantidadeVermelhoInput').value);
+
+      let resultadoElement = document.getElementById('resultado');
+
+      if (quantidadeAzul === 4 && quantidadeVermelho === 1) {
+        resultadoElement.innerText = "Entrar na cor vermelha";
+        resultadoElement.classList.remove('blue-result');
+        resultadoElement.classList.add('red-result'); // Adicionar a classe para a faixa vermelha
+      } else if (quantidadeAzul === 2 && quantidadeVermelho === 1) {
+        resultadoElement.innerText = "Entrar na cor vermelha";
+        resultadoElement.classList.remove('blue-result');
+        resultadoElement.classList.add('red-result'); // Adicionar a classe para a faixa vermelha
+      } else if (quantidadeAzul === 1 && quantidadeVermelho === 1) {
+        resultadoElement.innerText = "Entrar na cor azul";
+        resultadoElement.classList.remove('red-result');
+        resultadoElement.classList.add('blue-result'); // Adicionar a classe para a faixa azul
+      } else if (quantidadeAzul === 3 && quantidadeVermelho === 3) {
+        resultadoElement.innerText = "Entrar na cor vermelha";
+        resultadoElement.classList.remove('blue-result');
+        resultadoElement.classList.add('red-result'); // Adicionar a classe para a faixa vermelha
+      } else if (quantidadeAzul === 2 && quantidadeVermelho === 2) {
+        resultadoElement.innerText = "Entrar na cor azul";
+        resultadoElement.classList.remove('red-result');
+        resultadoElement.classList.add('blue-result'); // Adicionar a classe para a faixa azul
+      } else if (quantidadeAzul === 3 && quantidadeVermelho === 1) {
+        resultadoElement.innerText = "Entrar na cor azul";
+        resultadoElement.classList.remove('red-result');
+        resultadoElement.classList.add('blue-result'); // Adicionar a classe para a faixa azul
+      } else if (quantidadeAzul === 2 && quantidadeVermelho === 3) { // Novo caso
+        resultadoElement.innerText = "Entrar na cor vermelha";
+        resultadoElement.classList.remove('blue-result');
+        resultadoElement.classList.add('red-result'); // Adicionar a classe para a faixa vermelha
+      } else {
+        resultadoElement.innerText = quantidadeVermelho >= 3 ? "Entrar na cor vermelha" : "Entrar na cor azul";
+        resultadoElement.classList.remove('red-result', 'blue-result');
+      }
+    }
+
+    // Função para calcular o resultado da segunda calculadora
+    function calcularResultado2() {
+      let quantidadeAzul = parseInt(document.getElementById('quantidadeVermelhoInput2').value);
+      let quantidadeVermelho = parseInt(document.getElementById('quantidadePretoInput').value);
+
+      let resultadoElement2 = document.getElementById('resultado2');
+
+      if (quantidadeAzul === 2 && quantidadeVermelho === 2) {
+        resultadoElement2.innerText = "Entrar na cor vermelha";
+        resultadoElement2.classList.add('red-background'); // Adicionar a classe para a faixa vermelha
+      } else {
+        resultadoElement2.innerText = quantidadeVermelho >= 2 ? "Entrar na cor preta" : "Entrar na cor vermelha";
+        resultadoElement2.classList.remove('red-background'); // Remover a classe da faixa vermelha caso não seja necessário
+      }
+
+      resultadoElement2.classList.remove('blue-background', 'green-background');
+      if (quantidadeVermelho >= 2 || (quantidadeAzul === 2 && quantidadeVermelho === 2)) {
+        resultadoElement2.classList.add('blue-background'); // Adicionar a classe para a faixa azul
+      }
+    }
+
+    // Função para calcular o resultado da terceira calculadora (porcentagem diária)
+    function calcularPorcentagemDiaria() {
+      let valorInicial = parseFloat(document.getElementById('valorInicialInput').value);
+      let porcentagemDiaria = parseFloat(document.getElementById('porcentagemDiariaInput').value);
+
+      let resultadoElement = document.getElementById('resultadoPorcentagemDiaria');
+
+      if (isNaN(valorInicial) || isNaN(porcentagemDiaria)) {
+        resultadoElement.innerText = "Insira um valor válido e uma porcentagem diária válida.";
+        resultadoElement.classList.remove('green-result');
+      } else {
+        let valorPorcentagemDiaria = (valorInicial * porcentagemDiaria) / 100;
+        let valorFinal = valorInicial + valorPorcentagemDiaria;
+        resultadoElement.innerText = `O valor final após a porcentagem diária é: ${valorFinal.toFixed(2)}`;
+        resultadoElement.classList.add('green-result'); // Adicionar a classe para a faixa verde
+      }
+    }
+
+    // ... (Outras funções JavaScript e código) ...
+
+    // Função para rolar a página para o topo quando a página for carregada
+    window.onload = function () {
+      window.scrollTo(0, 0);
+    };
+  </script>
+</body>
