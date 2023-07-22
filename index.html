@@ -28,11 +28,16 @@
       box-sizing: border-box; /* Inclui a margem e o preenchimento na largura total */
     }
 
+    /* Estilos específicos para a segunda calculadora com texto branco */
+    .calculator.white-text {
+      color: #fff; /* Letra branca */
+    }
+
     /* Estilos para a seção de espelhamento */
     .iframe-container {
-      flex-basis: 50%;
+      flex-basis: 100%;
       margin-top: 10px;
-      height: 800px; /* Definindo a altura para 800px */
+      height: 700px; /* Definindo a altura para 800px */
     }
 
     iframe {
@@ -43,18 +48,6 @@
 
     .resultado {
       margin-top: 20px;
-    }
-
-    /* Estilos específicos para a faixa azul */
-    .blue-background {
-      background-color: #0000FF; /* Azul */
-      padding: 10px;
-    }
-
-    /* Estilos específicos para a faixa vermelha */
-    .red-background {
-      background-color: #FF0000; /* Vermelho */
-      padding: 10px;
     }
 
     /* Estilos específicos para a faixa azul no resultado */
@@ -74,15 +67,81 @@
       background-color: #00FF00; /* Verde */
       padding: 10px;
     }
-  /* Estilos para a logo */
+
+    /* Estilos específicos para a faixa roxa no resultado */
+    .purple-result {
+      background-color: #800080; /* Roxo */
+      padding: 10px;
+    }
+
+    /* Estilos específicos para a faixa branca no resultado */
+    .white-result {
+      background-color: #FFFFFF; /* Branco */
+      padding: 10px;
+    }
+    
+    /* Estilos específicos para a faixa preta no resultado */
+    .black-result {
+      background-color: #000; /* Preto */
+      color: #fff;
+      padding: 10px;
+    }
+
+    /* Estilos para a logo */
     .logo {
-      max-width: 200px; /* Defina o tamanho máximo desejado para o logotipo */
-      margin: 10px auto; /* Centraliza a logo horizontalmente com margem de 10px no topo */
+      max-wid 01px auto; /* Centraliza a logo horizontalmente com margem de 10px no topo */
+    }
+
+    /* Estilos para a mensagem de atenção */
+    .attention-message {
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      animation: pulsar 2s ease-in-out infinite; /* Adiciona a animação "pulsar" */
+      margin-bottom: 20px; /* Espaçamento inferior para separar do espelhamento de página */
+    }
+
+    /* Definição da animação "pulsar" */
+    @keyframes pulsar {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   </style>
+  <!-- Aviso: Use até 2 gales -->
+  <div class="attention-message">Atenção: Use até 2 gales!</div>
 </head>
 <body>
+  <!-- Mensagem de boas-vindas à nova era da IA -->
+  <div class="welcome-message attention-message">
+    Seja bem-vindo à nova era da IA
+  </div>
+
+  <script>
+    // Função para exibir a mensagem por 3 segundos
+    function showWelcomeMessage() {
+      var welcomeMessage = document.querySelector(".welcome-message");
+      welcomeMessage.style.display = "block"; // Exibir a mensagem
+
+      setTimeout(function () {
+        welcomeMessage.style.display = "none"; // Ocultar a mensagem após 3 segundos
+      }, 3000); // 3000 milissegundos = 3 segundos
+    }
+
+    // Chamando a função showWelcomeMessage para exibir a mensagem
+    showWelcomeMessage();
+  </script>
+
+  <!-- Código HTML existente ... -->
+
   <a id="topo"></a> <!-- Âncora para abrir a página no topo -->
-<img class="logo" src="https://document-export.canva.com/62AJ8/DAFpXw62AJ8/2/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20230721%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230721T234533Z&X-Amz-Expires=63409&X-Amz-Signature=c07d282ad02dd6008bd5e68962322b9b6f5f06219b62e14311976d8cad008c03&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2022%20Jul%202023%2017%3A22%3A22%20GMT" alt="MoneyAI Logo"> <!-- Substitua "LOGO_URL" pelo URL da imagem do logotipo -->
+  <img class="logo" src="https://document-export.canva.com/62AJ8/DAFpXw62AJ8/2/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20230721%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230721T234533Z&X-Amz-Expires=63409&X-Amz-Signature=c07d282ad02dd6008bd5e68962322b9b6f5f06219b62e14311976d8cad008c03&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2022%20Jul%202023%2017%3A22%3A22%20GMT" alt="MoneyAI Logo"> <!-- Substitua "LOGO_URL" pelo URL da imagem do logotipo -->
   <div class="container">
     <!-- Calculadora 1 -->
     <div class="calculator">
@@ -98,13 +157,13 @@
     </div>
 
     <!-- Calculadora 2 -->
-    <div class="calculator">
+    <div class="calculator white-text"> <!-- Adiciona a classe "white-text" para a segunda calculadora -->
       <h1>IA DOUBLE</h1>
+      <label>Defina a quantidade de cores azuis:</label>
+      <input type="number" id="quantidadeAzulInput2" value="0" min="0">
+      <br>
       <label>Defina a quantidade de cores vermelhas:</label>
       <input type="number" id="quantidadeVermelhoInput2" value="0" min="0">
-      <br>
-      <label>Defina a quantidade de cores pretas:</label>
-      <input type="number" id="quantidadePretoInput" value="0" min="0">
       <br>
       <button onclick="calcularResultado2()">Calcular</button>
       <p class="resultado" id="resultado2">-</p>
@@ -114,16 +173,18 @@
     <div class="calculator">
       <h1>GERENCIAMENTO</h1>
       <label>Valor inicial:</label>
-      <input type="text" id="valorInicialInput" value="" placeholder="Exemplo: VALOR">
+      <input type="number" id="valorInicialInput" value="0">
       <br>
       <label>Porcentagem diária:</label>
       <input type="number" id="porcentagemDiariaInput" value="0" min="0" max="100">
       <br>
       <button onclick="calcularPorcentagemDiaria()">Calcular</button>
-      <p class="resultado" id="resultadoPorcentagemDiaria">-</p>
+      <p class="resultado black-result" id="resultadoPorcentagemDiaria">-</p> <!-- Adiciona a classe "black-result" para definir a cor do texto como preto -->
     </div>
+
+    <!-- Código HTML existente ... -->
+
   </div>
-<div class="attention-message">Atenção: Use até 2 gales!</div>
 
   <!-- Espelhamento de site -->
   <div class="iframe-container">
@@ -131,7 +192,7 @@
   </div>
 
   <!-- Link para retornar ao topo da página -->
- <!-- Botões sociais -->
+  <!-- Botões sociais -->
   <div class="social-buttons">
     <a class="social-button whatsapp-button" href="https://api.whatsapp.com/send?phone=44997383279" target="_blank">WhatsApp</a>
     <a class="social-button Instagram-button" href="https://www.instagram.com/https://www.instagram.com/ademilson_212//ademilson_212/" target="_blank">Instagram</a>
@@ -139,7 +200,6 @@
   </div>
 
   <p><a href="#topo">Voltar ao topo</a></p>
-
 
   <script>
     // Função para calcular o resultado da primeira calculadora
@@ -149,58 +209,74 @@
 
       let resultadoElement = document.getElementById('resultado');
 
-      if (quantidadeAzul === 4 && quantidadeVermelho === 1) {
-        resultadoElement.innerText = "Entrar na cor vermelha";
-        resultadoElement.classList.remove('blue-result');
-        resultadoElement.classList.add('red-result'); // Adicionar a classe para a faixa vermelha
-      } else if (quantidadeAzul === 2 && quantidadeVermelho === 1) {
-        resultadoElement.innerText = "Entrar na cor vermelha";
-        resultadoElement.classList.remove('blue-result');
-        resultadoElement.classList.add('red-result'); // Adicionar a classe para a faixa vermelha
-      } else if (quantidadeAzul === 1 && quantidadeVermelho === 1) {
+      // Gerar um número aleatório entre 0 e 1
+      let randomValue = Math.random();
+
+      // Definir as probabilidades para cada cor
+      const probabilidadeAzul = 0.2; // 23% de chance de azul
+      const probabilidadeVermelho = 0.3; // 40% de chance de vermelho
+      const probabilidadeVerde = 0.1; // 1% de chance de verde
+      const probabilidadeRoxo = 0.1; // 80% de chance de roxo
+
+      if (randomValue < probabilidadeAzul) {
+        // Exibir cor azul
         resultadoElement.innerText = "Entrar na cor azul";
-        resultadoElement.classList.remove('red-result');
-        resultadoElement.classList.add('blue-result'); // Adicionar a classe para a faixa azul
-      } else if (quantidadeAzul === 3 && quantidadeVermelho === 3) {
+        resultadoElement.classList.remove('red-result', 'green-result', 'purple-result', 'white-result');
+        resultadoElement.classList.add('blue-result');
+      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho) {
+        // Exibir cor vermelha
         resultadoElement.innerText = "Entrar na cor vermelha";
-        resultadoElement.classList.remove('blue-result');
-        resultadoElement.classList.add('red-result'); // Adicionar a classe para a faixa vermelha
-      } else if (quantidadeAzul === 2 && quantidadeVermelho === 2) {
-        resultadoElement.innerText = "Entrar na cor azul";
-        resultadoElement.classList.remove('red-result');
-        resultadoElement.classList.add('blue-result'); // Adicionar a classe para a faixa azul
-      } else if (quantidadeAzul === 3 && quantidadeVermelho === 1) {
-        resultadoElement.innerText = "Entrar na cor azul";
-        resultadoElement.classList.remove('red-result');
-        resultadoElement.classList.add('blue-result'); // Adicionar a classe para a faixa azul
-      } else if (quantidadeAzul === 2 && quantidadeVermelho === 3) { // Novo caso
-        resultadoElement.innerText = "Entrar na cor vermelha";
-        resultadoElement.classList.remove('blue-result');
-        resultadoElement.classList.add('red-result'); // Adicionar a classe para a faixa vermelha
+        resultadoElement.classList.remove('blue-result', 'green-result', 'purple-result', 'white-result');
+        resultadoElement.classList.add('red-result');
+      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho + probabilidadeVerde) {
+        // Exibir cor verde
+        resultadoElement.innerText = "Entrar no tie";
+        resultadoElement.classList.remove('blue-result', 'red-result', 'purple-result', 'white-result');
+        resultadoElement.classList.add('green-result');
       } else {
-        resultadoElement.innerText = quantidadeVermelho >= 3 ? "Entrar na cor vermelha" : "Entrar na cor azul";
-        resultadoElement.classList.remove('red-result', 'blue-result');
+        // Exibir cor roxa
+        resultadoElement.innerText = "IA está trabalhando em uma entrada";
+        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'white-result');
+        resultadoElement.classList.add('purple-result');
       }
     }
 
     // Função para calcular o resultado da segunda calculadora
     function calcularResultado2() {
-      let quantidadeAzul = parseInt(document.getElementById('quantidadeVermelhoInput2').value);
-      let quantidadeVermelho = parseInt(document.getElementById('quantidadePretoInput').value);
+      let quantidadeAzul = parseInt(document.getElementById('quantidadeAzulInput2').value);
+      let quantidadeVermelho = parseInt(document.getElementById('quantidadeVermelhoInput2').value);
 
       let resultadoElement2 = document.getElementById('resultado2');
 
-      if (quantidadeAzul === 2 && quantidadeVermelho === 2) {
-        resultadoElement2.innerText = "Entrar na cor vermelha";
-        resultadoElement2.classList.add('red-background'); // Adicionar a classe para a faixa vermelha
-      } else {
-        resultadoElement2.innerText = quantidadeVermelho >= 2 ? "Entrar na cor preta" : "Entrar na cor vermelha";
-        resultadoElement2.classList.remove('red-background'); // Remover a classe da faixa vermelha caso não seja necessário
-      }
+      // Gerar um número aleatório entre 0 e 1
+      let randomValue = Math.random();
 
-      resultadoElement2.classList.remove('blue-background', 'green-background');
-      if (quantidadeVermelho >= 2 || (quantidadeAzul === 2 && quantidadeVermelho === 2)) {
-        resultadoElement2.classList.add('blue-background'); // Adicionar a classe para a faixa azul
+      // Definir as probabilidades para cada cor (mesmas probabilidades da primeira calculadora)
+      const probabilidadeAzul = 0.2; // 23% de chance de azul
+      const probabilidadeVermelho = 0.3; // 40% de chance de vermelho
+      const probabilidadeVerde = 0.1; // 1% de chance de verde
+      const probabilidadeRoxo = 0.1; // 80% de chance de roxo
+
+      if (randomValue < probabilidadeAzul) {
+        // Exibir cor azul
+        resultadoElement2.innerText = "Entrar na cor preta";
+        resultadoElement2.classList.remove('red-result', 'green-result', 'purple-result', 'white-result');
+        resultadoElement2.classList.add('blue-result');
+      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho) {
+        // Exibir cor vermelha
+        resultadoElement2.innerText = "Entrar na cor vermelha";
+        resultadoElement2.classList.remove('blue-result', 'green-result', 'purple-result', 'white-result');
+        resultadoElement2.classList.add('red-result');
+      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho + probabilidadeVerde) {
+        // Exibir cor verde
+        resultadoElement2.innerText = "Entrar no branco";
+        resultadoElement2.classList.remove('blue-result', 'red-result', 'purple-result', 'white-result');
+        resultadoElement2.classList.add('green-result', 'white-result');
+      } else {
+        // Exibir cor roxa
+        resultadoElement2.innerText = "IA está trabalhando em uma entrada";
+        resultadoElement2.classList.remove('blue-result', 'red-result', 'green-result', 'white-result');
+        resultadoElement2.classList.add('purple-result');
       }
     }
 
@@ -209,24 +285,16 @@
       let valorInicial = parseFloat(document.getElementById('valorInicialInput').value);
       let porcentagemDiaria = parseFloat(document.getElementById('porcentagemDiariaInput').value);
 
-      let resultadoElement = document.getElementById('resultadoPorcentagemDiaria');
+      let resultadoElement3 = document.getElementById('resultadoPorcentagemDiaria');
 
-      if (isNaN(valorInicial) || isNaN(porcentagemDiaria)) {
-        resultadoElement.innerText = "Insira um valor válido e uma porcentagem diária válida.";
-        resultadoElement.classList.remove('green-result');
-      } else {
-        let valorPorcentagemDiaria = (valorInicial * porcentagemDiaria) / 100;
-        let valorFinal = valorInicial + valorPorcentagemDiaria;
-        resultadoElement.innerText = `O valor final após a porcentagem diária é: ${valorFinal.toFixed(2)}`;
-        resultadoElement.classList.add('green-result'); // Adicionar a classe para a faixa verde
-      }
+      // Calcular o resultado (valorInicial + (valorInicial * porcentagemDiaria / 100))
+      let resultado = valorInicial + (valorInicial * porcentagemDiaria / 100);
+
+      resultadoElement3.innerText = "Resultado: " + resultado.toFixed(2);
+      resultadoElement3.classList.remove('blue-result', 'red-result', 'green-result', 'purple-result');
+      resultadoElement3.classList.add('black-result'); // Altera a classe para "black-result" para definir a cor do texto como preto
     }
 
-    // ... (Outras funções JavaScript e código) ...
-
-    // Função para rolar a página para o topo quando a página for carregada
-    window.onload = function () {
-      window.scrollTo(0, 0);
-    };
   </script>
 </body>
+</html>
