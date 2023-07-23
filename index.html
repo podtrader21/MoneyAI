@@ -41,13 +41,37 @@
     }
 
     iframe {
-      width: 40%;
+      width: 80%;
       height: 80%; /* Definindo a altura do iframe para 100% da div pai */
       border: none;
     }
 
-    .resultado {
-      margin-top: 20px;
+    /* Estilos para a logo */
+    .logo {
+      max-width: 200px; /* Tamanho máximo da logo */
+      margin: 10px auto; /* Centraliza a logo horizontalmente com margem de 10px no topo */
+    }
+
+    /* Estilos para a mensagem de atenção */
+    .attention-message {
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      animation: pulsar 2s ease-in-out infinite; /* Adiciona a animação "pulsar" */
+      margin-bottom: 20px; /* Espaçamento inferior para separar do espelhamento de página */
+    }
+
+    /* Definição da animação "pulsar" */
+    @keyframes pulsar {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
     }
 
     /* Estilos específicos para a faixa azul no resultado */
@@ -74,51 +98,22 @@
       padding: 10px;
     }
 
-    /* Estilos específicos para a faixa branca no resultado */
-    .white-result {
-      background-color: #FFFFFF; /* Branco */
-      padding: 10px;
-    }
-    
-    /* Estilos específicos para a faixa preta no resultado */
-    .black-result {
-      background-color: #000; /* Preto */
-      color: #fff;
+    /* Estilos específicos para a faixa amarela no resultado */
+    .yellow-result {
+      background-color: #FFFF00; /* Amarelo */
       padding: 10px;
     }
 
-    /* Estilos para a logo */
-    .logo {
-      max-wid 01px auto; /* Centraliza a logo horizontalmente com margem de 10px no topo */
-    }
-
-    /* Estilos para a mensagem de atenção */
-    .attention-message {
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-      animation: pulsar 2s ease-in-out infinite; /* Adiciona a animação "pulsar" */
-      margin-bottom: 20px; /* Espaçamento inferior para separar do espelhamento de página */
-    }
-
-    /* Definição da animação "pulsar" */
-    @keyframes pulsar {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-      }
+    /* Estilos para a seção de resultado da terceira calculadora (IA Dragon) */
+    .resultado {
+      height: 100px; /* Ajuste a altura conforme necessário */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
-  <!-- Aviso: Use até 2 gales -->
-  <div class="attention-message">Atenção: Use até 2 gales!</div>
 </head>
 <body>
-  <!-- Mensagem de boas-vindas à nova era da IA -->
   <div class="welcome-message attention-message">
     Seja bem-vindo à nova era da IA
   </div>
@@ -134,11 +129,58 @@
       }, 3000); // 3000 milissegundos = 3 segundos
     }
 
+    // Função para mostrar a mensagem "IA procurando uma jogada" por 5 segundos
+    function mostrarMensagemIA(resultadoElement) {
+      resultadoElement.innerText = "IA procurando uma jogada";
+
+      setTimeout(function () {
+        calcularResultado(resultadoElement);
+      }, 5000); // 5000 milissegundos = 5 segundos
+    }
+
+    // Função para calcular o resultado da primeira calculadora
+    function calcularResultado(resultadoElement) {
+      // Gerar um número aleatório entre 0 e 1
+      let randomValue = Math.random();
+
+      // Definir as probabilidades para cada cor
+      const probabilidadeAzul = 0.2; // 5% de chance de azul
+      const probabilidadeVermelho = 0.3; // 10% de chance de vermelho
+      const probabilidadeVerde = 0.1; // 1% de chance de verde
+      const probabilidadeRoxo = 0.1; // 98% de chance de roxo
+
+      if (randomValue < probabilidadeAzul) {
+        // Exibir cor azul
+        resultadoElement.innerText = "Entrar na cor azul";
+        resultadoElement.classList.remove('red-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
+        resultadoElement.classList.add('blue-result');
+      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho) {
+        // Exibir cor vermelha
+        resultadoElement.innerText = "Entrar na cor vermelha";
+        resultadoElement.classList.remove('blue-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
+        resultadoElement.classList.add('red-result');
+      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho + probabilidadeVerde) {
+        // Exibir cor verde
+        resultadoElement.innerText = "Entrar no tie";
+        resultadoElement.classList.remove('blue-result', 'red-result', 'purple-result', 'yellow-result', 'white-result');
+        resultadoElement.classList.add('green-result');
+      } else {
+        // Exibir cor roxa
+        resultadoElement.innerText = "IA está trabalhando em uma entrada";
+        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result');
+        resultadoElement.classList.add('purple-result');
+      }
+
+      // Ocultar resultado após 15 segundos
+      setTimeout(function () {
+        resultadoElement.innerHTML = '-';
+        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result', 'purple-result');
+      }, 15000); // 15000 milissegundos = 15 segundos
+    }
+
     // Chamando a função showWelcomeMessage para exibir a mensagem
     showWelcomeMessage();
   </script>
-
-  <!-- Código HTML existente ... -->
 
   <a id="topo"></a> <!-- Âncora para abrir a página no topo -->
   <img class="logo" src="https://document-export.canva.com/62AJ8/DAFpXw62AJ8/2/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20230721%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230721T234533Z&X-Amz-Expires=63409&X-Amz-Signature=c07d282ad02dd6008bd5e68962322b9b6f5f06219b62e14311976d8cad008c03&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2022%20Jul%202023%2017%3A22%3A22%20GMT" alt="MoneyAI Logo"> <!-- Substitua "LOGO_URL" pelo URL da imagem do logotipo -->
@@ -146,44 +188,25 @@
     <!-- Calculadora 1 -->
     <div class="calculator">
       <h1>IA DADOS</h1>
-      <label>Defina a quantidade de cores azuis:</label>
-      <input type="number" id="quantidadeAzulInput" value="0" min="0">
-      <br>
-      <label>Defina a quantidade de cores vermelhas:</label>
-      <input type="number" id="quantidadeVermelhoInput" value="0" min="0">
-      <br>
-      <button onclick="calcularResultado()">Calcular</button>
+      <button onclick="mostrarMensagemIA(document.getElementById('resultado'))">Obter Entrada</button>
       <p class="resultado" id="resultado">-</p>
     </div>
 
     <!-- Calculadora 2 -->
-    <div class="calculator white-text"> <!-- Adiciona a classe "white-text" para a segunda calculadora -->
+    <div class="calculator white-text">
       <h1>IA DOUBLE</h1>
-      <label>Defina a quantidade de cores azuis:</label>
-      <input type="number" id="quantidadeAzulInput2" value="0" min="0">
-      <br>
-      <label>Defina a quantidade de cores vermelhas:</label>
-      <input type="number" id="quantidadeVermelhoInput2" value="0" min="0">
-      <br>
-      <button onclick="calcularResultado2()">Calcular</button>
+      <button onclick="mostrarMensagemIA(document.getElementById('resultado2'))">Obter Entrada</button>
       <p class="resultado" id="resultado2">-</p>
     </div>
 
-    <!-- Calculadora 3 -->
+    <!-- Calculadora 3 (IA football) -->
     <div class="calculator">
-      <h1>GERENCIAMENTO</h1>
-      <label>Valor inicial:</label>
-      <input type="number" id="valorInicialInput" value="0">
-      <br>
-      <label>Porcentagem diária:</label>
-      <input type="number" id="porcentagemDiariaInput" value="0" min="0" max="100">
-      <br>
-      <button onclick="calcularPorcentagemDiaria()">Calcular</button>
-      <p class="resultado black-result" id="resultadoPorcentagemDiaria">-</p> <!-- Adiciona a classe "black-result" para definir a cor do texto como preto -->
+      <h1>IA FOOTBALL</h1>
+      <button onclick="mostrarMensagemIA(document.getElementById('resultadoDragonTiger'))" style="margin-bottom: 12px;">Obter Entrada</button>
+      <div class="resultado" id="resultadoDragonTiger">
+        <p class="color-text">-</p>
+      </div>
     </div>
-
-    <!-- Código HTML existente ... -->
-
   </div>
 
   <!-- Espelhamento de site -->
@@ -202,99 +225,39 @@
   <p><a href="#topo">Voltar ao topo</a></p>
 
   <script>
-    // Função para calcular o resultado da primeira calculadora
-    function calcularResultado() {
-      let quantidadeAzul = parseInt(document.getElementById('quantidadeAzulInput').value);
-      let quantidadeVermelho = parseInt(document.getElementById('quantidadeVermelhoInput').value);
-
-      let resultadoElement = document.getElementById('resultado');
-
-      // Gerar um número aleatório entre 0 e 1
+    // Função para calcular o resultado da terceira calculadora (IA Dragon)
+    function calcularResultado(resultadoElement) {
       let randomValue = Math.random();
 
-      // Definir as probabilidades para cada cor
-      const probabilidadeAzul = 0.2; // 23% de chance de azul
-      const probabilidadeVermelho = 0.3; // 40% de chance de vermelho
+      const probabilidadeAzul = 0.2; // 5% de chance de azul
+      const probabilidadeVermelho = 0.3; // 10% de chance de vermelho
       const probabilidadeVerde = 0.1; // 1% de chance de verde
-      const probabilidadeRoxo = 0.1; // 80% de chance de roxo
+      const probabilidadeAmarelo = 0.1; // 1% de chance de amarelo
+      const probabilidadeRoxo = 0.1; // 98% de chance de roxo
 
       if (randomValue < probabilidadeAzul) {
-        // Exibir cor azul
-        resultadoElement.innerText = "Entrar na cor azul";
-        resultadoElement.classList.remove('red-result', 'green-result', 'purple-result', 'white-result');
+        resultadoElement.innerHTML = '<p class="color-text">Entrar na cor azul</p>';
+        resultadoElement.classList.remove('red-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
         resultadoElement.classList.add('blue-result');
       } else if (randomValue < probabilidadeAzul + probabilidadeVermelho) {
-        // Exibir cor vermelha
-        resultadoElement.innerText = "Entrar na cor vermelha";
-        resultadoElement.classList.remove('blue-result', 'green-result', 'purple-result', 'white-result');
+        resultadoElement.innerHTML = '<p class="color-text">Entrar na cor vermelha</p>';
+        resultadoElement.classList.remove('blue-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
         resultadoElement.classList.add('red-result');
       } else if (randomValue < probabilidadeAzul + probabilidadeVermelho + probabilidadeVerde) {
-        // Exibir cor verde
-        resultadoElement.innerText = "Entrar no tie";
-        resultadoElement.classList.remove('blue-result', 'red-result', 'purple-result', 'white-result');
+        resultadoElement.innerHTML = '<p class="color-text">Entrar no tie</p>';
+        resultadoElement.classList.remove('blue-result', 'red-result', 'purple-result', 'yellow-result', 'white-result');
         resultadoElement.classList.add('green-result');
       } else {
-        // Exibir cor roxa
-        resultadoElement.innerText = "IA está trabalhando em uma entrada";
-        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'white-result');
+        resultadoElement.innerHTML = '<p class="color-text">IA está trabalhando em uma entrada</p>';
+        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result');
         resultadoElement.classList.add('purple-result');
       }
+
+      setTimeout(function () {
+        resultadoElement.innerHTML = '<p class="color-text">-</p>';
+        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result', 'purple-result');
+      }, 15000); // 15000 milissegundos = 15 segundos
     }
-
-    // Função para calcular o resultado da segunda calculadora
-    function calcularResultado2() {
-      let quantidadeAzul = parseInt(document.getElementById('quantidadeAzulInput2').value);
-      let quantidadeVermelho = parseInt(document.getElementById('quantidadeVermelhoInput2').value);
-
-      let resultadoElement2 = document.getElementById('resultado2');
-
-      // Gerar um número aleatório entre 0 e 1
-      let randomValue = Math.random();
-
-      // Definir as probabilidades para cada cor (mesmas probabilidades da primeira calculadora)
-      const probabilidadeAzul = 0.2; // 23% de chance de azul
-      const probabilidadeVermelho = 0.3; // 40% de chance de vermelho
-      const probabilidadeVerde = 0.1; // 1% de chance de verde
-      const probabilidadeRoxo = 0.1; // 80% de chance de roxo
-
-      if (randomValue < probabilidadeAzul) {
-        // Exibir cor azul
-        resultadoElement2.innerText = "Entrar na cor preta";
-        resultadoElement2.classList.remove('red-result', 'green-result', 'purple-result', 'white-result');
-        resultadoElement2.classList.add('blue-result');
-      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho) {
-        // Exibir cor vermelha
-        resultadoElement2.innerText = "Entrar na cor vermelha";
-        resultadoElement2.classList.remove('blue-result', 'green-result', 'purple-result', 'white-result');
-        resultadoElement2.classList.add('red-result');
-      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho + probabilidadeVerde) {
-        // Exibir cor verde
-        resultadoElement2.innerText = "Entrar no branco";
-        resultadoElement2.classList.remove('blue-result', 'red-result', 'purple-result', 'white-result');
-        resultadoElement2.classList.add('green-result', 'white-result');
-      } else {
-        // Exibir cor roxa
-        resultadoElement2.innerText = "IA está trabalhando em uma entrada";
-        resultadoElement2.classList.remove('blue-result', 'red-result', 'green-result', 'white-result');
-        resultadoElement2.classList.add('purple-result');
-      }
-    }
-
-    // Função para calcular o resultado da terceira calculadora (porcentagem diária)
-    function calcularPorcentagemDiaria() {
-      let valorInicial = parseFloat(document.getElementById('valorInicialInput').value);
-      let porcentagemDiaria = parseFloat(document.getElementById('porcentagemDiariaInput').value);
-
-      let resultadoElement3 = document.getElementById('resultadoPorcentagemDiaria');
-
-      // Calcular o resultado (valorInicial + (valorInicial * porcentagemDiaria / 100))
-      let resultado = valorInicial + (valorInicial * porcentagemDiaria / 100);
-
-      resultadoElement3.innerText = "Resultado: " + resultado.toFixed(2);
-      resultadoElement3.classList.remove('blue-result', 'red-result', 'green-result', 'purple-result');
-      resultadoElement3.classList.add('black-result'); // Altera a classe para "black-result" para definir a cor do texto como preto
-    }
-
   </script>
 </body>
 </html>
