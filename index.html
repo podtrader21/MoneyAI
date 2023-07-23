@@ -118,6 +118,12 @@
     Seja bem-vindo à nova era da IA
   </div>
 
+  <!-- Áudio para reproduzir o som de clique -->
+  <audio id="clickSound">
+    <source src="https://drive.google.com/uc?id=1QidIK7s6YAD7dzG6Px45HrgQaTBM-kOZ" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
   <script>
     // Função para exibir a mensagem por 3 segundos
     function showWelcomeMessage() {
@@ -138,44 +144,31 @@
       }, 5000); // 5000 milissegundos = 5 segundos
     }
 
+    // Função para reproduzir o som de clique
+    function playClickSound() {
+      const clickSound = document.getElementById('clickSound');
+      clickSound.play();
+    }
+
     // Função para calcular o resultado da primeira calculadora
     function calcularResultado(resultadoElement) {
-      // Gerar um número aleatório entre 0 e 1
-      let randomValue = Math.random();
+      playClickSound(); // Reproduzir o som de clique
+      
+      // Restante do código para calcular o resultado...
+    }
 
-      // Definir as probabilidades para cada cor
-      const probabilidadeAzul = 0.2; // 5% de chance de azul
-      const probabilidadeVermelho = 0.3; // 10% de chance de vermelho
-      const probabilidadeVerde = 0.1; // 1% de chance de verde
-      const probabilidadeRoxo = 0.1; // 98% de chance de roxo
+    // Função para calcular o resultado da segunda calculadora
+    function calcularResultado2(resultadoElement) {
+      playClickSound(); // Reproduzir o som de clique
+      
+      // Restante do código para calcular o resultado...
+    }
 
-      if (randomValue < probabilidadeAzul) {
-        // Exibir cor azul
-        resultadoElement.innerText = "Entrar na cor azul";
-        resultadoElement.classList.remove('red-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('blue-result');
-      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho) {
-        // Exibir cor vermelha
-        resultadoElement.innerText = "Entrar na cor vermelha";
-        resultadoElement.classList.remove('blue-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('red-result');
-      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho + probabilidadeVerde) {
-        // Exibir cor verde
-        resultadoElement.innerText = "Entrar no tie";
-        resultadoElement.classList.remove('blue-result', 'red-result', 'purple-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('green-result');
-      } else {
-        // Exibir cor roxa
-        resultadoElement.innerText = "IA está trabalhando em uma entrada";
-        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('purple-result');
-      }
-
-      // Ocultar resultado após 15 segundos
-      setTimeout(function () {
-        resultadoElement.innerHTML = '-';
-        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result', 'purple-result');
-      }, 15000); // 15000 milissegundos = 15 segundos
+    // Função para calcular o resultado da terceira calculadora
+    function calcularResultadoDragonTiger(resultadoElement) {
+      playClickSound(); // Reproduzir o som de clique
+      
+      // Restante do código para calcular o resultado...
     }
 
     // Chamando a função showWelcomeMessage para exibir a mensagem
@@ -217,16 +210,26 @@
   <!-- Link para retornar ao topo da página -->
   <!-- Botões sociais -->
   <div class="social-buttons">
-    <a class="social-button whatsapp-button" href="https://api.whatsapp.com/send?phone=44997383279" target="_blank">WhatsApp</a>
-    <a class="social-button Instagram-button" href="https://www.instagram.com/https://www.instagram.com/ademilson_212//ademilson_212/" target="_blank">Instagram</a>
-    <a class="social-button youtube-button" href="https://www.youtube.com/c/https://www.youtube.com/channel/UC39TmNBpx7PEpBowlh3MODg" target="_blank">YouTube</a>
+    <a class="social-button Telegram-button" href="https://t.me/+-IRE2GNDK1U0YzRh" target="_blank">
+      <i class="fab fa-telegram"></i> Telegram
+    </a>
+    <a class="social-button whatsapp-button" href="https://api.whatsapp.com/send?phone=44997383279" target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+    <a class="social-button Instagram-button" href="https://www.instagram.com/https://www.instagram.com/ademilson_212//ademilson_212/" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+    <a class="social-button youtube-button" href="https://www.youtube.com/c/https://www.youtube.com/channel/UC39TmNBpx7PEpBowlh3MODg" target="_blank">
+      <i class="fab fa-youtube"></i> YouTube
+    </a>
   </div>
-
   <p><a href="#topo">Voltar ao topo</a></p>
 
   <script>
     // Função para calcular o resultado da terceira calculadora (IA Dragon)
     function calcularResultado(resultadoElement) {
+      playClickSound(); // Reproduzir o som de clique
+
       let randomValue = Math.random();
 
       const probabilidadeAzul = 0.2; // 5% de chance de azul
