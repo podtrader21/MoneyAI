@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>MoneyAI</title>
+ <!-- Adicione o link do favicon abaixo -->
+  <link rel="icon" href="https://document-export.canva.com/62AJ8/DAFpXw62AJ8/2/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20230722%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230722T234533Z&X-Amz-Expires=59809&X-Amz-Signature=54ec06792617417a361f23d13b1b93f8fc890e7e1d8b4fdf27ff2f85929de065&X-Amz-SignedHeaders=host&response-expires=Sun%2C%2023%20Jul%202023%2016%3A22%3A22%20GMT" type="image/x-icon">
   <style>
     /* Estilos gerais */
     body {
@@ -120,7 +122,7 @@
 
   <!-- Áudio para reproduzir o som de clique -->
   <audio id="clickSound">
-    <source src="https://drive.google.com/uc?id=1QidIK7s6YAD7dzG6Px45HrgQaTBM-kOZ" type="audio/mpeg">
+    <source src="https://drive.google.com/uc?id=1hjYBk4kDXFl2u6qSUFMQRqSbJrHtN4l0" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
 
@@ -153,22 +155,51 @@
     // Função para calcular o resultado da primeira calculadora
     function calcularResultado(resultadoElement) {
       playClickSound(); // Reproduzir o som de clique
-      
+
       // Restante do código para calcular o resultado...
     }
 
     // Função para calcular o resultado da segunda calculadora
     function calcularResultado2(resultadoElement) {
       playClickSound(); // Reproduzir o som de clique
-      
+
       // Restante do código para calcular o resultado...
     }
 
-    // Função para calcular o resultado da terceira calculadora
-    function calcularResultadoDragonTiger(resultadoElement) {
+    // Função para calcular o resultado da terceira calculadora (IA Dragon)
+    function calcularResultado(resultadoElement) {
       playClickSound(); // Reproduzir o som de clique
-      
-      // Restante do código para calcular o resultado...
+
+      let randomValue = Math.random();
+
+      const probabilidadeAzul = 0.2; // 5% de chance de azul
+      const probabilidadeVermelho = 0.3; // 10% de chance de vermelho
+      const probabilidadeVerde = 0.1; // 1% de chance de verde
+      const probabilidadeAmarelo = 0.1; // 1% de chance de amarelo
+      const probabilidadeRoxo = 0.1; // 98% de chance de roxo
+
+      if (randomValue < probabilidadeAzul) {
+        resultadoElement.innerHTML = '<p class="color-text">Entrar na cor azul</p>';
+        resultadoElement.classList.remove('red-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
+        resultadoElement.classList.add('blue-result');
+      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho) {
+        resultadoElement.innerHTML = '<p class="color-text">Entrar na cor vermelha</p>';
+        resultadoElement.classList.remove('blue-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
+        resultadoElement.classList.add('red-result');
+      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho + probabilidadeVerde) {
+        resultadoElement.innerHTML = '<p class="color-text">Entrar no tie</p>';
+        resultadoElement.classList.remove('blue-result', 'red-result', 'purple-result', 'yellow-result', 'white-result');
+        resultadoElement.classList.add('green-result');
+      } else {
+        resultadoElement.innerHTML = '<p class="color-text">IA está trabalhando em uma entrada</p>';
+        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result');
+        resultadoElement.classList.add('purple-result');
+      }
+
+      setTimeout(function () {
+        resultadoElement.innerHTML = '<p class="color-text">-</p>';
+        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result', 'purple-result');
+      }, 15000); // 15000 milissegundos = 15 segundos
     }
 
     // Chamando a função showWelcomeMessage para exibir a mensagem
@@ -226,41 +257,7 @@
   <p><a href="#topo">Voltar ao topo</a></p>
 
   <script>
-    // Função para calcular o resultado da terceira calculadora (IA Dragon)
-    function calcularResultado(resultadoElement) {
-      playClickSound(); // Reproduzir o som de clique
-
-      let randomValue = Math.random();
-
-      const probabilidadeAzul = 0.2; // 5% de chance de azul
-      const probabilidadeVermelho = 0.3; // 10% de chance de vermelho
-      const probabilidadeVerde = 0.1; // 1% de chance de verde
-      const probabilidadeAmarelo = 0.1; // 1% de chance de amarelo
-      const probabilidadeRoxo = 0.1; // 98% de chance de roxo
-
-      if (randomValue < probabilidadeAzul) {
-        resultadoElement.innerHTML = '<p class="color-text">Entrar na cor azul</p>';
-        resultadoElement.classList.remove('red-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('blue-result');
-      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho) {
-        resultadoElement.innerHTML = '<p class="color-text">Entrar na cor vermelha</p>';
-        resultadoElement.classList.remove('blue-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('red-result');
-      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho + probabilidadeVerde) {
-        resultadoElement.innerHTML = '<p class="color-text">Entrar no tie</p>';
-        resultadoElement.classList.remove('blue-result', 'red-result', 'purple-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('green-result');
-      } else {
-        resultadoElement.innerHTML = '<p class="color-text">IA está trabalhando em uma entrada</p>';
-        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('purple-result');
-      }
-
-      setTimeout(function () {
-        resultadoElement.innerHTML = '<p class="color-text">-</p>';
-        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result', 'purple-result');
-      }, 15000); // 15000 milissegundos = 15 segundos
-    }
+    // Restante do código JavaScript...
   </script>
 </body>
 </html>
