@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Página de Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+    .login-container {
+      margin-top: 100px;
+      background-color: #222;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    input {
+      margin-bottom: 10px;
+      padding: 12px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    input::placeholder {
+      color: #aaa;
+    }
+    input:focus {
+      outline: none;
+      border: 1px solid #666;
+    }
+    input[type="submit"] {
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    input[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+    .mensagemErro {
+      color: #ff7675;
+      font-weight: bold;
+    }
+    .link {
+      color: #3498db;
+      text-decoration: none;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+    .logo {
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 150px;
+      border-radius: 50%;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <img src="https://document-export.canva.com/62AJ8/DAFpXw62AJ8/2/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20230722%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230722T234533Z&X-Amz-Expires=63409&X-Amz-Signature=88ed46cbb5f311851510989e3b889007f1563504170d4112fe6ae7f887ca71a5&X-Amz-SignedHeaders=host&response-expires=Sun%2C%2023%20Jul%202023%2017%3A22%3A22%20GMT" alt="Logo da sua empresa">
+    </div>
+    <h1>Página de Login</h1>
+    <form onsubmit="return validarLogin()">
+      <input type="text" id="username" placeholder="Usuário" required><br>
+      <input type="password" id="password" placeholder="Senha" required><br>
+      <input type="submit" value="Entrar">
+    </form>
+    <p class="mensagemErro" id="mensagemErro"></p>
+    <p>Não tem uma conta? <a class="link" href="https://t.me/+09IegxT5FZFiNTIx" target="_blank">Cadastre-se no Telegram</a></p>
+  </div>
+
+  <script>
+    function validarLogin() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      // Obter os logins salvos no painel administrativo
+      var loginsSalvos = JSON.parse(localStorage.getItem('logins')) || [];
+
+      // Verificar se o login fornecido está na lista de logins salvos
+      for (var i = 0; i < loginsSalvos.length; i++) {
+        if (loginsSalvos[i].username === username && loginsSalvos[i].password === password) {
+          // Login válido, redirecionar para a URL específica
+          window.location.href = 'https://podtrader21.github.io/MoneyAI/';
+          return false; // Cancelar o envio do formulário para evitar recarregar a página
+        }
+      }
+
+      // Login inválido, exibir mensagem de erro
+      document.getElementById('mensagemErro').innerText = 'Usuário ou senha inválidos';
+      return false; // Cancelar o envio do formulário para evitar recarregar a página
+    }
+  </script>
+</body>
+</html>
