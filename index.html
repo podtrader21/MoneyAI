@@ -1,263 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>MoneyAI</title>
- <!-- Adicione o link do favicon abaixo -->
-  <link rel="icon" href="https://document-export.canva.com/62AJ8/DAFpXw62AJ8/2/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20230722%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230722T234533Z&X-Amz-Expires=59809&X-Amz-Signature=54ec06792617417a361f23d13b1b93f8fc890e7e1d8b4fdf27ff2f85929de065&X-Amz-SignedHeaders=host&response-expires=Sun%2C%2023%20Jul%202023%2016%3A22%3A22%20GMT" type="image/x-icon">
-  <style>
-    /* Estilos gerais */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #000; /* Fundo preto */
-      color: #fff;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money IA Gerenciamentos</title>
+    <style>
+        /* Estilos CSS aqui */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* Estilos para o container das calculadoras */
-    .container {
-      max-width: 1200px; /* Largura máxima do container */
-      margin: 0 auto; /* Centraliza o container na página */
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
+        h1 {
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            margin: 0;
+        }
 
-    /* Estilos para cada calculadora */
-    .calculator {
-      flex-basis: calc(25% - 20px);
-      margin: 10px;
-      padding: 20px;
-      box-sizing: border-box; /* Inclui a margem e o preenchimento na largura total */
-    }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    /* Estilos específicos para a segunda calculadora com texto branco */
-    .calculator.white-text {
-      color: #fff; /* Letra branca */
-    }
+        .tab {
+            display: none;
+        }
 
-    /* Estilos para a seção de espelhamento */
-    .iframe-container {
-      flex-basis: 100%;
-      margin-top: 10px;
-      height: 700px; /* Definindo a altura para 800px */
-    }
+        .active-tab {
+            display: block;
+        }
 
-    iframe {
-      width: 80%;
-      height: 80%; /* Definindo a altura do iframe para 100% da div pai */
-      border: none;
-    }
+        .tab-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
 
-    /* Estilos para a logo */
-    .logo {
-      max-width: 200px; /* Tamanho máximo da logo */
-      margin: 10px auto; /* Centraliza a logo horizontalmente com margem de 10px no topo */
-    }
+        .tab-button:hover {
+            background-color: #45a049;
+        }
 
-    /* Estilos para a mensagem de atenção */
-    .attention-message {
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-      animation: pulsar 2s ease-in-out infinite; /* Adiciona a animação "pulsar" */
-      margin-bottom: 20px; /* Espaçamento inferior para separar do espelhamento de página */
-    }
+        input[type="number"] {
+            padding: 10px;
+            margin: 5px;
+            width: 100%;
+        }
 
-    /* Definição da animação "pulsar" */
-    @keyframes pulsar {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
 
-    /* Estilos específicos para a faixa azul no resultado */
-    .blue-result {
-      background-color: #0000FF;
-      padding: 10px;
-    }
+        button:hover {
+            background-color: #45a049;
+        }
 
-    /* Estilos específicos para a faixa vermelha no resultado */
-    .red-result {
-      background-color: #FF0000;
-      padding: 10px;
-    }
+        h2 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+        }
 
-    /* Estilos específicos para a faixa verde no resultado */
-    .green-result {
-      background-color: #00FF00; /* Verde */
-      padding: 10px;
-    }
+        h3 {
+            margin-top: 20px;
+        }
 
-    /* Estilos específicos para a faixa roxa no resultado */
-    .purple-result {
-      background-color: #800080; /* Roxo */
-      padding: 10px;
-    }
-
-    /* Estilos específicos para a faixa amarela no resultado */
-    .yellow-result {
-      background-color: #FFFF00; /* Amarelo */
-      padding: 10px;
-    }
-
-    /* Estilos para a seção de resultado da terceira calculadora (IA Dragon) */
-    .resultado {
-      height: 100px; /* Ajuste a altura conforme necessário */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style>
+        p {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-  <div class="welcome-message attention-message">
-    Seja bem-vindo à nova era da IA
-  </div>
+    <h1>MoneyIA</h1>
+    <div class="container">
+        <button class="tab-button" onclick="openTab('gale')">Calculadora de Gale</button>
+        <button class="tab-button" onclick="openTab('jurosCompostos')">Gerenciamento</button>
 
-  <!-- Áudio para reproduzir o som de clique -->
-  <audio id="clickSound">
-    <source src="https://drive.google.com/uc?id=1hjYBk4kDXFl2u6qSUFMQRqSbJrHtN4l0" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
+        <div id="gale" class="tab">
+            <h2>Calculadora de Gale</h2>
+            
+            <label for="entrada">Valor de Entrada:</label>
+            <input type="number" id="entradaGale" min="0">
+            
+            <button onclick="calcularGales()">Calcular</button>
 
-  <script>
-    // Função para exibir a mensagem por 3 segundos
-    function showWelcomeMessage() {
-      var welcomeMessage = document.querySelector(".welcome-message");
-      welcomeMessage.style.display = "block"; // Exibir a mensagem
+            <h3>Resultados:</h3>
+            <p>Gale 1: Cada Coluna: <span id="resultadoGale1"></span></p>
+            <p>Gale 2: Cada Coluna: <span id="resultadoGale2"></span></p>
+        </div>
 
-      setTimeout(function () {
-        welcomeMessage.style.display = "none"; // Ocultar a mensagem após 3 segundos
-      }, 3000); // 3000 milissegundos = 3 segundos
-    }
+        <div id="jurosCompostos" class="tab">
+            <h2>Gerenciamento</h2>
 
-    // Função para mostrar a mensagem "IA procurando uma jogada" por 5 segundos
-    function mostrarMensagemIA(resultadoElement) {
-      resultadoElement.innerText = "IA procurando uma jogada";
+            <label for="bancaInicial">Banca Inicial:</label>
+            <input type="number" id="bancaInicial" min="0">
 
-      setTimeout(function () {
-        calcularResultado(resultadoElement);
-      }, 5000); // 5000 milissegundos = 5 segundos
-    }
+            <label for="taxaDeJuros">Porcentagem (%):</label>
+            <input type="number" id="taxaDeJuros" min="0">
 
-    // Função para reproduzir o som de clique
-    function playClickSound() {
-      const clickSound = document.getElementById('clickSound');
-      clickSound.play();
-    }
+            <label for="periodo">Dias:</label>
+            <input type="number" id="periodo" min="0">
 
-    // Função para calcular o resultado da primeira calculadora
-    function calcularResultado(resultadoElement) {
-      playClickSound(); // Reproduzir o som de clique
+            <button onclick="calcularJurosCompostos()">Calcular</button>
+           
 
-      // Restante do código para calcular o resultado...
-    }
-
-    // Função para calcular o resultado da segunda calculadora
-    function calcularResultado2(resultadoElement) {
-      playClickSound(); // Reproduzir o som de clique
-
-      // Restante do código para calcular o resultado...
-    }
-
-    // Função para calcular o resultado da terceira calculadora (IA Dragon)
-    function calcularResultado(resultadoElement) {
-      playClickSound(); // Reproduzir o som de clique
-
-      let randomValue = Math.random();
-
-      const probabilidadeAzul = 0.2; // 5% de chance de azul
-      const probabilidadeVermelho = 0.3; // 10% de chance de vermelho
-      const probabilidadeVerde = 0.1; // 1% de chance de verde
-      const probabilidadeAmarelo = 0.1; // 1% de chance de amarelo
-      const probabilidadeRoxo = 0.1; // 98% de chance de roxo
-
-      if (randomValue < probabilidadeAzul) {
-        resultadoElement.innerHTML = '<p class="color-text">Entrar na cor azul</p>';
-        resultadoElement.classList.remove('red-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('blue-result');
-      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho) {
-        resultadoElement.innerHTML = '<p class="color-text">Entrar na cor vermelha</p>';
-        resultadoElement.classList.remove('blue-result', 'green-result', 'purple-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('red-result');
-      } else if (randomValue < probabilidadeAzul + probabilidadeVermelho + probabilidadeVerde) {
-        resultadoElement.innerHTML = '<p class="color-text">Entrar no tie</p>';
-        resultadoElement.classList.remove('blue-result', 'red-result', 'purple-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('green-result');
-      } else {
-        resultadoElement.innerHTML = '<p class="color-text">IA está trabalhando em uma entrada</p>';
-        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result');
-        resultadoElement.classList.add('purple-result');
-      }
-
-      setTimeout(function () {
-        resultadoElement.innerHTML = '<p class="color-text">-</p>';
-        resultadoElement.classList.remove('blue-result', 'red-result', 'green-result', 'yellow-result', 'white-result', 'purple-result');
-      }, 15000); // 15000 milissegundos = 15 segundos
-    }
-
-    // Chamando a função showWelcomeMessage para exibir a mensagem
-    showWelcomeMessage();
-  </script>
-
-  <a id="topo"></a> <!-- Âncora para abrir a página no topo -->
-  <img class="logo" src="https://document-export.canva.com/62AJ8/DAFpXw62AJ8/2/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20230721%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230721T234533Z&X-Amz-Expires=63409&X-Amz-Signature=c07d282ad02dd6008bd5e68962322b9b6f5f06219b62e14311976d8cad008c03&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2022%20Jul%202023%2017%3A22%3A22%20GMT" alt="MoneyAI Logo"> <!-- Substitua "LOGO_URL" pelo URL da imagem do logotipo -->
-  <div class="container">
-    <!-- Calculadora 1 -->
-    <div class="calculator">
-      <h1>IA DADOS</h1>
-      <button onclick="mostrarMensagemIA(document.getElementById('resultado'))">Obter Entrada</button>
-      <p class="resultado" id="resultado">-</p>
+            <h3>Resultado:</h3>
+            <div id="resultadoJurosCompostos"></div>
+        </div>
     </div>
 
-    <!-- Calculadora 2 -->
-    <div class="calculator white-text">
-      <h1>IA DOUBLE</h1>
-      <button onclick="mostrarMensagemIA(document.getElementById('resultado2'))">Obter Entrada</button>
-      <p class="resultado" id="resultado2">-</p>
-    </div>
+    <script>
+        function openTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.style.display = 'none');
+            document.getElementById(tabName).style.display = 'block';
+        }
 
-    <!-- Calculadora 3 (IA football) -->
-    <div class="calculator">
-      <h1>IA FOOTBALL</h1>
-      <button onclick="mostrarMensagemIA(document.getElementById('resultadoDragonTiger'))" style="margin-bottom: 12px;">Obter Entrada</button>
-      <div class="resultado" id="resultadoDragonTiger">
-        <p class="color-text">-</p>
-      </div>
-    </div>
-  </div>
+        function calcularGales() {
+            // Obtenha o valor de entrada
+            const valorEntrada = parseFloat(document.getElementById("entradaGale").value);
 
-  <!-- Espelhamento de site -->
-  <div class="iframe-container">
-    <iframe src="https://9f.com/r/PXrGBosV" frameborder="0"></iframe>
-  </div>
+            // Calcule os valores dos gales com base nas regras
+            const gale1 = valorEntrada * 3;
+            const gale2 = valorEntrada * 9;
 
-  <!-- Link para retornar ao topo da página -->
-  <!-- Botões sociais -->
-  <div class="social-buttons">
-    <a class="social-button Telegram-button" href="https://t.me/+-IRE2GNDK1U0YzRh" target="_blank">
-      <i class="fab fa-telegram"></i> Telegram
-    </a>
-    <a class="social-button whatsapp-button" href="https://api.whatsapp.com/send?phone=44997383279" target="_blank">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-    <a class="social-button Instagram-button" href="https://www.instagram.com/https://www.instagram.com/ademilson_212//ademilson_212/" target="_blank">
-      <i class="fab fa-instagram"></i> Instagram
-    </a>
-    <a class="social-button youtube-button" href="https://www.youtube.com/c/https://www.youtube.com/channel/UC39TmNBpx7PEpBowlh3MODg" target="_blank">
-      <i class="fab fa-youtube"></i> YouTube
-    </a>
-  </div>
-  <p><a href="#topo">Voltar ao topo</a></p>
+            // Exiba os resultados da calculadora de Gale na página
+            document.getElementById("resultadoGale1").textContent = gale1.toFixed(2);
+            document.getElementById("resultadoGale2").textContent = gale2.toFixed(2);
+        }
 
-  <script>
-    // Restante do código JavaScript...
-  </script>
+        function calcularJurosCompostos() {
+            // Obtenha os valores de entrada para a calculadora de Juros Compostos
+            const bancaInicial = parseFloat(document.getElementById("bancaInicial").value);
+            const taxaDeJuros = parseFloat(document.getElementById("taxaDeJuros").value);
+            const periodo = parseFloat(document.getElementById("periodo").value);
+
+            // Calcule o valor futuro dia a dia usando a fórmula de juros compostos
+            const taxaDecimal = taxaDeJuros / 100;
+            let valorFuturo = bancaInicial;
+            let resultado = '';
+
+            for (let dia = 1; dia <= periodo; dia++) {
+                valorFuturo = valorFuturo * (1 + taxaDecimal);
+                resultado += `Dia ${dia}: R$ ${valorFuturo.toFixed(2)}<br>`;
+            }
+
+            // Exiba o resultado da calculadora de Juros Compostos na página
+            document.getElementById("resultadoJurosCompostos").innerHTML = resultado;
+        }
+
+        // Abra a primeira aba por padrão
+        openTab('gale');
+    </script>
 </body>
 </html>
